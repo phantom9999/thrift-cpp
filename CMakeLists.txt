@@ -43,7 +43,6 @@ aux_source_directory(src/thrift/transport TRANSPORT)
 aux_source_directory(src/thrift THRIFT)
 
 
-include(${PROJECT_SOURCE_DIR}/cmake/FindLibevent.cmake)
 
 set(Boost_USE_STATIC_LIBS        ON)
 set(Boost_USE_MULTITHREADED      ON)
