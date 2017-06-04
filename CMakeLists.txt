@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-
+set(LIBTHRIFT thriftpp)
 set(CMAKE_CXX_FLAGS "-DHAVE_CONFIG_H -D__STDC_LIMIT_MACROS -Wall -Wextra -g -O2 -std=c++11")
 include_directories(src)
 
@@ -50,6 +50,9 @@ set(Boost_USE_STATIC_RUNTIME     ON)
 find_package(
         Boost COMPONENTS
         thread
+        unit_test_framework
+        filesystem
+        program_options
 )
 
 
@@ -65,7 +68,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 
 add_library(
-        thriftpp
+        ${LIBTHRIFT}
         ${ASYNC}
         ${CONCURRENCY}
         ${PROCESSOR}
@@ -82,9 +85,10 @@ target_link_libraries(
         -lssl -lcrypto
         ${Boost_LIBRARIES}
         ${OPENSSL_LIBRARIES}
-
 )
 
+add_subdirectory(test)
+add_subdirectory(demo)
 
 
 
